@@ -7,9 +7,10 @@ import org.springframework.security.config.annotation.web.reactive.EnableWebFlux
 import org.springframework.security.config.web.server.ServerHttpSecurity;
 import org.springframework.security.core.userdetails.MapReactiveUserDetailsService;
 import org.springframework.security.core.userdetails.User;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.factory.PasswordEncoderFactories;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.server.SecurityWebFilterChain;
-
-//import org.springframework.security.crypto.password.DelegatingPasswordEncoder;
 
 @Configuration
 @EnableWebFluxSecurity
@@ -26,8 +27,7 @@ public class SecurityConfig {
 
 
         // @formatter:off
-        return
-                http.csrf().disable()
+        return http.csrf().disable()
                         .headers().frameOptions().disable()
                         .and()
                         .authorizeExchange()
@@ -42,18 +42,22 @@ public class SecurityConfig {
     @Bean
     public MapReactiveUserDetailsService userDetailsService() {
         return new MapReactiveUserDetailsService(
-                User.withDefaultPasswordEncoder()
+                User.builder()
                         .username("user")
-                        .password("password")
+                        .password(passwordEncoder().encode("password"))
                         .roles("USER")
                         .build(),
-                User.withDefaultPasswordEncoder()
+                User.builder()
                         .username("admin")
-                        .password("password")
+                        .password(passwordEncoder().encode("password"))
                         .roles("USER,ADMIN")
                         .build());
     }
 
+    @Bean
+    public PasswordEncoder passwordEncoder() {
+        return PasswordEncoderFactories.createDelegatingPasswordEncoder();
+    }
 /*
     @Override
     protected void configure(HttpSecurity http) throws Exception {
