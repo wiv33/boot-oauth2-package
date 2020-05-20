@@ -1,0 +1,13 @@
+version: '3.7'
+
+services:
+  my_h2:
+    image: oscarfonts/h2
+    container_name: my_h2_instance
+    ports:
+    - 1521:1521
+    - 81:81
+    volumes:
+    - /path/to/local/data_dir:/opt/h2-data
+    environment:
+      H2_OPTIONS: -ifNotExists
