@@ -13,9 +13,7 @@ spring:
     data-username: sa
   jpa:
     database-platform: org.hibernate.dialect.H2Dialect
-    properties:
-      hibernate:
-        hbm2ddl:
-          auto: update
     show-sql: true
+    hibernate:
+      ddl-auto: create-drop
 

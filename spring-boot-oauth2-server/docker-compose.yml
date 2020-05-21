@@ -1,9 +1,9 @@
 version: '3.7'
 
 services:
-  my_h2:
+  my_h2_oauth2:
     image: oscarfonts/h2
-    container_name: my_h2_instance
+    container_name: oauth2-h2
     ports:
     - 1521:1521
     - 81:81
