@@ -4,6 +4,8 @@ server:
 ##
 #
 spring:
+  profiles:
+    active: local
   h2:
     console:
       enabled: true
@@ -16,8 +18,6 @@ spring:
     data-password:
   jpa:
     database-platform: H2
-    properties:
-      hibernate:
-        hbm2ddl:
-          auto: update
     show-sql: true
+    hibernate:
+      ddl-auto: create-drop
