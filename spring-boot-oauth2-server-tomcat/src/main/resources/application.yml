@@ -1,0 +1,23 @@
+server:
+  port: 8081
+
+##
+#
+spring:
+  h2:
+    console:
+      enabled: true
+      settings:
+        web-allow-others: true
+  datasource:
+    url: jdbc:h2:tcp://localhost:1521/testdb
+    driver-class-name: org.h2.Driver
+    data-username: sa
+    data-password:
+  jpa:
+    database-platform: H2
+    properties:
+      hibernate:
+        hbm2ddl:
+          auto: update
+    show-sql: true
