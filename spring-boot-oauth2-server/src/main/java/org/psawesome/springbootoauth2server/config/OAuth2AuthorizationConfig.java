@@ -12,11 +12,6 @@ import org.springframework.security.oauth2.config.annotation.web.configurers.Aut
 @EnableAuthorizationServer
 public class OAuth2AuthorizationConfig extends AuthorizationServerConfigurerAdapter {
 
-    private final BCryptPasswordEncoder passwordEncoder;
-
-    public OAuth2AuthorizationConfig(BCryptPasswordEncoder passwordEncoder) {
-        this.passwordEncoder = passwordEncoder;
-    }
 
     @Bean
     public BCryptPasswordEncoder getPasswordEncoder() {
@@ -24,21 +19,14 @@ public class OAuth2AuthorizationConfig extends AuthorizationServerConfigurerAdap
     }
 
     @Override
-    public void configure(AuthorizationServerSecurityConfigurer security) throws Exception {
-        security.tokenKeyAccess("permitAll()")
-                .checkTokenAccess("isAuthenticated()")
-                .allowFormAuthenticationForClients();
-    }
-
-    @Override
     public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
         clients.inMemory()
                 //더미
                 .withClient("testClientId")
-                .secret(passwordEncoder.encode("testSecret"))
+                .secret(("testSecret"))
 
                 // 인증 완료 후 code 보낼 주소
-                .redirectUris("http://localhost:8081/oauth2/callback")
+                .redirectUris("http://localhost:8080/oauth2/callback")
 
                 // Authorization_code, implicit, password credential, client credential
                 .authorizedGrantTypes("password", "authorization_code", "refresh_token")

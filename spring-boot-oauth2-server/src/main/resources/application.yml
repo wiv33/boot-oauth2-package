@@ -1,19 +1,16 @@
 server:
-  port: 8081
+  port: 8080
 
+##
+#
 spring:
-  h2:
-    console:
-      enabled: true
-      settings:
-        web-allow-others: true
-  datasource:
-    url: jdbc:h2:tcp://localhost:1521/testdb
-    driver-class-name: org.h2.Driver
-    data-username: sa
-  jpa:
-    database-platform: org.hibernate.dialect.H2Dialect
-    show-sql: true
-    hibernate:
-      ddl-auto: create-drop
+  profiles:
+    active: dev
+  data:
+    mongodb:
+      database: webflux_security_demo
+      host: my_mongodb
+      port: 27017
+#      uri: mongodb://mongo:27017/webflux_security_demo
+
 
