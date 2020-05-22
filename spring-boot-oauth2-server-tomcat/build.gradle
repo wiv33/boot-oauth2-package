@@ -1,12 +1,12 @@
 plugins {
-    id 'org.springframework.boot' version '2.3.1.BUILD-SNAPSHOT'
+    id 'org.springframework.boot' version '2.3.0.RELEASE'
     id 'io.spring.dependency-management' version '1.0.9.RELEASE'
     id 'java'
 }
 
 group = 'org.psawesome'
 version = '0.0.1-SNAPSHOT'
-sourceCompatibility = '11'
+sourceCompatibility = '1.8'
 
 configurations {
     compileOnly {
@@ -16,27 +16,24 @@ configurations {
 
 repositories {
     mavenCentral()
-    maven { url 'https://repo.spring.io/milestone' }
-    maven { url 'https://repo.spring.io/snapshot' }
 }
 
 ext {
-    set('springCloudVersion', "Hoxton.BUILD-SNAPSHOT")
+    set('springCloudVersion', "Hoxton.SR4")
 }
 
 dependencies {
-//    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
-    implementation 'org.springframework.boot:spring-boot-starter-webflux'
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation 'org.springframework.cloud:spring-cloud-starter-oauth2'
     implementation 'org.springframework.cloud:spring-cloud-starter-security'
-    implementation 'org.springframework.boot:spring-boot-starter-data-mongodb-reactive'
-
+    implementation 'com.google.code.gson:gson'
     compileOnly 'org.projectlombok:lombok'
+    implementation 'com.h2database:h2'
     annotationProcessor 'org.projectlombok:lombok'
     testImplementation('org.springframework.boot:spring-boot-starter-test') {
         exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
     }
-    testImplementation 'io.projectreactor:reactor-test'
 }
 
 dependencyManagement {

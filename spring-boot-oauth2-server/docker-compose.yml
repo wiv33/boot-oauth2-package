@@ -1,13 +1,13 @@
 version: '3.7'
 
+networks:
+  ps_network_01:
+
 services:
-  my_h2:
-    image: oscarfonts/h2
-    container_name: my_h2_instance
+  my_mongodb:
+    image: mongo
+    hostname: my-mongo
     ports:
-    - 1521:1521
-    - 81:81
-    volumes:
-    - /path/to/local/data_dir:/opt/h2-data
-    environment:
-      H2_OPTIONS: -ifNotExists
+    - 27017:27017
+    networks:
+      - ps_network_01

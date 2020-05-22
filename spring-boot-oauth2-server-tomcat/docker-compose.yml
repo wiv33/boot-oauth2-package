@@ -1,0 +1,28 @@
+version: '3.7'
+
+networks:
+  my_oauth2_network:
+
+services:
+  my_web:
+    build: .
+    ports:
+    - 8080:8080
+    depends_on:
+      - my_h2
+    networks:
+      - my_oauth2_network
+
+  my_h2:
+    image: oscarfonts/h2
+    container_name: my_h2_instance
+    ports:
+    - 1521:1521
+    - 9092:9092
+    - 81:81
+    volumes:
+    - /path/to/local/data_dir:/opt/h2-data
+    environment:
+      H2_OPTIONS: -ifNotExists
+    networks:
+      - my_oauth2_network
