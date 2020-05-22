@@ -9,8 +9,13 @@ spring:
   data:
     mongodb:
       database: webflux_security_demo
-      host: my_mongodb
+      host: localhost
       port: 27017
 #      uri: mongodb://mongo:27017/webflux_security_demo
 
-
+---
+spring:
+  profiles: prod
+  data:
+    mongodb:
+      uri: mongodb://my-mongo:27017/webflux_security_demo
