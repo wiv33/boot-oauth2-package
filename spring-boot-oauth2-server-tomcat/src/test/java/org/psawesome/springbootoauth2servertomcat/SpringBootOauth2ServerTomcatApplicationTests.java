@@ -3,7 +3,9 @@ package org.psawesome.springbootoauth2servertomcat;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.mockito.Mock;
 import org.mockito.Mockito;
+import org.mockito.MockitoAnnotations;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
@@ -35,17 +37,20 @@ class SpringBootOauth2ServerTomcatApplicationTests {
 
     private MockMvc mockMvc;
 
-    SpringBootOauth2ServerTomcatApplication mock = Mockito.mock(SpringBootOauth2ServerTomcatApplication.class);
+    @Mock
+    SpringBootOauth2ServerTomcatApplication application;
 
     @BeforeEach
     void setUp() {
         mockMvc = MockMvcBuilders.webAppContextSetup(this.wac)
                 .build();
+        MockitoAnnotations.initMocks(SpringBootOauth2ServerTomcatApplication.class);
     }
 
     @Test
     void contextLoads() {
         assertNotNull(testRestTemplate);
+        assertNotNull(application);
     }
 
     @Test
@@ -88,4 +93,8 @@ class SpringBootOauth2ServerTomcatApplicationTests {
         assertEquals(0, mvcResult.getContentLength());
     }
 
+    @Test
+    void testMock() {
+        // 테스트 어떻게 하지?
+    }
 }
