@@ -15,6 +15,9 @@ public class Oauth2AuthorizationConfig extends AuthorizationServerConfigurerAdap
                 .withClient("testClientId")
                 .secret("testSecret")
                 .redirectUris("http://localhost:8081/oauth2/callback")
+                /*
+                "authorization_code", "password", "client_credentials", "implicit", "refresh_token"
+                */
                 .authorizedGrantTypes("authorization_code")
                 .scopes("read", "write")
                 .accessTokenValiditySeconds(30000)

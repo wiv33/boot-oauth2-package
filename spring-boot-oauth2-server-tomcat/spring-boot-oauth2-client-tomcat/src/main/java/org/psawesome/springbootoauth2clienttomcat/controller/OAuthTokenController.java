@@ -45,7 +45,7 @@ public class OAuthTokenController {
         return null;
     }
 
-    private HttpEntity<Object> makeEntity(@RequestParam String code, String encodeCredentials) {
+    private HttpEntity<Object> makeEntity(String code, String encodeCredentials) {
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_FORM_URLENCODED);
         headers.add("Authorization", "Basic " + encodeCredentials);
