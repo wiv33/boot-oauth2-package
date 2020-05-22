@@ -20,8 +20,4 @@ public class WebConfig implements WebMvcConfigurer {
                 .maxAge(MAX_AGE_SECONDS);
     }
 
-    @Bean
-    public RestTemplate getRestTemplate() {
-        return new RestTemplate();
-    }
 }

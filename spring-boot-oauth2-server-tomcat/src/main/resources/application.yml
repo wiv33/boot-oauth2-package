@@ -1,5 +1,5 @@
 server:
-  port: 8080
+  port: 8081
 
 ##
 #
@@ -12,7 +12,7 @@ spring:
     username: ps
     password: secret
   jpa:
-    database-platform: postgresql
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
     show-sql: true
     properties:
       hibernate:
