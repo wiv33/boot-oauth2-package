@@ -6,16 +6,18 @@ server:
 spring:
   profiles:
     active: dev
-  h2:
-    console:
-      enabled: true
-      settings:
-        web-allow-others: true
   datasource:
-#    url: jdbc:h2:tcp://localhost/~/testdb
-    driver-class-name: org.h2.Driver
+    url: jdbc:postgresql://localhost:5432/postgres
+    driver-class-name: org.postgresql.Driver
+    username: ps
+    password: secret
   jpa:
-    database-platform: H2
+    database-platform: postgresql
     show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+        temp:
+          use_jdbc_metadata_defaults: false
     hibernate:
       ddl-auto: create-drop
