@@ -6,7 +6,6 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
@@ -16,7 +15,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Bean
     public PasswordEncoder noOpPasswordEncoder() {
-        return PasswordEncoderFactories.createDelegatingPasswordEncoder();
+//        HashMap<String, PasswordEncoder> stringPasswordEncoderHashMap = new HashMap<>();
+//        stringPasswordEncoderHashMap.put("pass", PasswordEncoderFactories.createDelegatingPasswordEncoder());
+//        DelegatingPasswordEncoder delegatingPasswordEncoder = new DelegatingPasswordEncoder("userId", stringPasswordEncoderHashMap);
+        return NoOpPasswordEncoder.getInstance();
     }
 
     @Override
