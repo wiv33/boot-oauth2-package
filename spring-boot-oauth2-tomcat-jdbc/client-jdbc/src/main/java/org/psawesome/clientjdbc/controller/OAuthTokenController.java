@@ -27,17 +27,42 @@ public class OAuthTokenController {
     private final RestTemplate restTemplate;
     private final Gson gson;
 
+    String url = "http://localhost:8081/oauth/token";
+
     public OAuthTokenController(RestTemplate restTemplate, Gson gson) {
         this.restTemplate = restTemplate;
         this.gson = gson;
     }
 
+    @GetMapping("/token/refresh")
+    public OAuthToken refreshToken(@RequestParam String refreshToken) {
+        HttpEntity<?> httpEntity = makeRefreshHttpEntity(makeCredentials(), refreshToken);
+        ResponseEntity<String> response = restTemplate.postForEntity(url, httpEntity, String.class);
+
+        if (response.getStatusCode().is2xxSuccessful()) {
+            OAuthToken oAuthToken = new OAuthToken();
+            return gson.fromJson(response.getBody(), oAuthToken.getClass());
+        }
+
+        return null;
+    }
+
+    private HttpEntity<?> makeRefreshHttpEntity(String credentials, String refreshToken) {
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_FORM_URLENCODED);
+        headers.add("Accept", MediaType.APPLICATION_JSON_VALUE);
+        headers.add("Authorization", "Basic " + credentials);
+
+        MultiValueMap<String, String> params = new LinkedMultiValueMap<>();
+        params.add("refresh_token", refreshToken);
+        params.add("grant_type", "refresh_token");
+
+        return new HttpEntity<>(params, headers);
+    }
 
     @GetMapping("/token")
     public OAuthToken callback(@RequestParam String code) {
-
         HttpEntity<?> httpEntity = makeHttpEntity(code);
-        String url = "http://localhost:8081/oauth/token";
         ResponseEntity<String> response = restTemplate.postForEntity(url, httpEntity, String.class);
         if (response.getStatusCode().is2xxSuccessful()) {
             OAuthToken oAuthToken = new OAuthToken();

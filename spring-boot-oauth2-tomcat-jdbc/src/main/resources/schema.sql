@@ -1,8 +1,8 @@
-DROP TABLE IF EXISTS oauth_client_token CASCADE;
-DROP TABLE IF EXISTS oauth_access_token CASCADE;
-DROP TABLE IF EXISTS oauth_refresh_token CASCADE;
-DROP TABLE IF EXISTS oauth_code CASCADE;
-DROP TABLE IF EXISTS oauth_approvals CASCADE;
+-- DROP TABLE IF EXISTS oauth_client_token CASCADE;
+-- DROP TABLE IF EXISTS oauth_access_token CASCADE;
+-- DROP TABLE IF EXISTS oauth_refresh_token CASCADE;
+-- DROP TABLE IF EXISTS oauth_code CASCADE;
+-- DROP TABLE IF EXISTS oauth_approvals CASCADE;
 
 create table IF NOT EXISTS oauth_client_token
 (

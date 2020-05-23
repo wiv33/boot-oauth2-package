@@ -32,3 +32,9 @@ logging:
   level:
     org.hibernate.SQL: DEBUG
     org.hibernate.type: trace
+
+
+security:
+  oauth2:
+    jwt:
+      signKey: 337@#*
