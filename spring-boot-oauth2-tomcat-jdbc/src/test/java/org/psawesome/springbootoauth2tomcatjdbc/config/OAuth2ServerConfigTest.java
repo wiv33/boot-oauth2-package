@@ -12,7 +12,7 @@ import static org.junit.jupiter.api.Assertions.*;
  * author: PS
  * DATE: 2020-05-23 토요일 15:36
  */
-@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+@SpringBootTest
 class OAuth2ServerConfigTest {
 
     @Autowired

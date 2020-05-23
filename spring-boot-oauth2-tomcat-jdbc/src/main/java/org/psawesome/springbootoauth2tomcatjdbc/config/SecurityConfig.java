@@ -1,5 +1,7 @@
 package org.psawesome.springbootoauth2tomcatjdbc.config;
 
+import lombok.RequiredArgsConstructor;
+import org.psawesome.springbootoauth2tomcatjdbc.common.CustomAuthenticationProvider;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -9,8 +11,6 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
-import javax.sql.DataSource;
-
 /**
  * package: org.psawesome.springbootoauth2tomcatjdbc.config
  * author: PS
@@ -18,25 +18,14 @@ import javax.sql.DataSource;
  */
 @Configuration
 @EnableWebSecurity
+@RequiredArgsConstructor
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
-    private final DataSource dataSource;
-
-    public SecurityConfig(DataSource dataSource) {
-        this.dataSource = dataSource;
-    }
-
-    @Bean
-    PasswordEncoder passwordEncoder() {
-        return PasswordEncoderFactories.createDelegatingPasswordEncoder();
-    }
+    final CustomAuthenticationProvider provider;
 
     @Override
-    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.inMemoryAuthentication()
-                .withUser("user")
-                .password(passwordEncoder().encode("pass"))
-                .roles("USER");
+    protected void configure(AuthenticationManagerBuilder auth) {
+        auth.authenticationProvider(provider);
     }
 
     @Override
@@ -44,7 +33,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.csrf().disable()
                 .headers().frameOptions().disable()
                 .and()
-                .authorizeRequests().antMatchers("/oauth/**").permitAll()
+                .authorizeRequests().antMatchers("/oauth/**, /oauth/token").permitAll()
                 .and()
                 .formLogin()
                 .and()

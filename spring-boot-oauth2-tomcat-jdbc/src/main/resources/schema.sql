@@ -12,3 +12,13 @@ create table IF NOT EXISTS oauth_client_details
     additional_information  VARCHAR(4096),
     autoapprove             VARCHAR(256)
 );
+
+create table IF NOT EXISTS my_user
+(
+    msrl     bigserial    not null,
+    name     varchar(100) not null,
+    password varchar(100),
+    provider varchar(100),
+    uid      varchar(50)  not null,
+    primary key (msrl)
+)
