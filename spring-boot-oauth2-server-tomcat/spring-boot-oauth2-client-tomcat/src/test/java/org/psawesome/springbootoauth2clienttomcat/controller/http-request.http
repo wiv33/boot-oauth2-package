@@ -1,0 +1,3 @@
+GET http://localhost:8081/oauth/authorize?client_id=testClientId&redirect_uri=http://localhost:8090/oauth2/token&respose_type=code&scope=read
+Content-Type: application/x-www-form-urlencoded
+###

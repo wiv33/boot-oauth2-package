@@ -20,7 +20,6 @@ import org.springframework.web.client.RestTemplate;
 @RequestMapping("/oauth2")
 public class OAuthTokenController {
 
-
     private final Gson gson;
     private final RestTemplate restTemplate;
 

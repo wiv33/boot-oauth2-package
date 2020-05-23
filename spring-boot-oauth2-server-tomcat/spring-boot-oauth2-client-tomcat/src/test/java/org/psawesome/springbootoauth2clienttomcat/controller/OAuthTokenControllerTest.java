@@ -3,12 +3,12 @@ package org.psawesome.springbootoauth2clienttomcat.controller;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.context.ApplicationContext;
+import org.springframework.http.ResponseEntity;
 
-import static org.junit.jupiter.api.Assertions.*;
+import java.net.URI;
 
 /**
  * package: org.psawesome.springbootoauth2clienttomcat.controller
@@ -36,6 +36,8 @@ class OAuthTokenControllerTest {
 
     @Test
     void testGetToken() {
-//        testRestTemplate.postForEntity()
+        URI uri = URI.create("http://localhost:8081/oauth/authorize?client_id=testClientId&redirect_uri=https://localhost:8090/oauth2/token&response_code=code&scope=read");
+        ResponseEntity<String> response = testRestTemplate.getForEntity(uri, String.class);
+        System.out.println("response = " + response);
     }
 }
