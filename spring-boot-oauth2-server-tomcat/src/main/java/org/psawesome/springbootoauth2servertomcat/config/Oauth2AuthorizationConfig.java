@@ -23,17 +23,17 @@ public class Oauth2AuthorizationConfig extends AuthorizationServerConfigurerAdap
 
     @Override
     public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
-        /*clients.inMemory()
+        clients.inMemory()
                 .withClient("testClientId")
                 .secret(encoder.encode("testSecret"))
                 .redirectUris("http://localhost:8090/oauth2/token")
-                *//*
+                /*
                 "authorization_code", "password", "client_credentials", "implicit", "refresh_token"
-                *//*
+                */
                 .authorizedGrantTypes("authorization_code,refresh_token")
                 .scopes("read", "write")
                 .accessTokenValiditySeconds(30000)
-        ;*/
-        clients.jdbc(dataSource).passwordEncoder(encoder);
+        ;
+//        clients.jdbc(dataSource).passwordEncoder(encoder);
     }
 }
