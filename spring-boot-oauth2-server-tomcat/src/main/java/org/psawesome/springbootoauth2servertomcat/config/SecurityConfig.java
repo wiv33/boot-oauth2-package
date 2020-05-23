@@ -31,7 +31,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .csrf().disable()
                 .headers().frameOptions().disable()
                 .and()
-                .authorizeRequests().antMatchers("/oauth/**", "/oauth2/callback").permitAll()
+                .authorizeRequests().antMatchers("/oauth/**").permitAll()
                 .and()
                 .formLogin().and()
                 .httpBasic();

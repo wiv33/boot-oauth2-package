@@ -33,7 +33,7 @@ public class OAuthTokenController {
     public OAuthToken callback(@RequestParam String code) {
         String encodeCredentials = makeCredentials();
 
-        HttpEntity<Object> request = makeEntity(code, encodeCredentials);
+        HttpEntity<?> request = makeEntity(code, encodeCredentials);
 
         ResponseEntity<String> response = restTemplate.postForEntity("http://localhost:8081/oauth/token", request, String.class);
 
@@ -45,23 +45,23 @@ public class OAuthTokenController {
         return null;
     }
 
-    private HttpEntity<Object> makeEntity(String code, String encodeCredentials) {
+    private HttpEntity<?> makeEntity(String code, String encodeCredentials) {
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_FORM_URLENCODED);
         headers.add("Authorization", "Basic " + encodeCredentials);
 
-        LinkedMultiValueMap<Object, Object> multiMap = new LinkedMultiValueMap<>();
+        LinkedMultiValueMap<String, String> multiMap = new LinkedMultiValueMap<>();
         multiMap.add("code", code);
         multiMap.add("grant_type", "authorization_code");
-        multiMap.add("redirect_uri", "http://localhost:8081/oauth2/callback");
+        multiMap.add("redirect_uri", "http://localhost:8090/oauth2/token");
 
         return new HttpEntity<>(multiMap, headers);
     }
 
     private String makeCredentials() {
-        var clientId = "testClientId";
-        var secret = "testSecret";
-        var credentials = String.format("%s:%s", clientId, secret);
+        String clientId = "testClientId";
+        String secret = "testSecret";
+        String credentials = String.format("%s:%s", clientId, secret);
         return new String(Base64.encodeBase64(credentials.getBytes()));
     }
 }
