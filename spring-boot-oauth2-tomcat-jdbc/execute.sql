@@ -2,3 +2,6 @@
 --values('testClientId',null,'{bcrypt}$2a$10$eKD9TPXNQtCEr8GsZcG2O.7NuANO.ZqYhFxRVw/euOPrjgbQUiH4m','read,write','authorization_code,refresh_token','http://localhost:8090/oauth2/token','ROLE_USER',36000,50000,null,null);
 
 SELECT * FROM oauth_client_details
+
+DELETE FROM oauth_client_details
+WHERE client_id = 'testClientId'
