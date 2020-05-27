@@ -1,9 +1,10 @@
-server:
-  port: 8081
-
 ##
 #
+
 spring:
+  profiles:
+    active: resource
+
   datasource:
     url: jdbc:postgresql://localhost:5432/postgres
     driver-class-name: org.postgresql.Driver
@@ -19,8 +20,8 @@ spring:
           use_jdbc_metadata_defaults: false
     hibernate:
       ddl-auto: update
-##
-#
+  ##
+  #
   output:
     ansi:
       enabled: always
