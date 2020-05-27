@@ -4,30 +4,3 @@
 spring:
   profiles:
     active: resource
-
-  datasource:
-    url: jdbc:postgresql://localhost:5432/postgres
-    driver-class-name: org.postgresql.Driver
-    username: ps
-    password: secret
-  jpa:
-    database-platform: org.hibernate.dialect.PostgreSQLDialect
-    show-sql: true
-    properties:
-      hibernate:
-        format_sql: true
-        temp:
-          use_jdbc_metadata_defaults: false
-    hibernate:
-      ddl-auto: update
-  ##
-  #
-  output:
-    ansi:
-      enabled: always
-##
-#
-logging:
-  level:
-    org.hibernate.SQL: DEBUG
-    org.hibernate.type: trace
