@@ -1,0 +1,9 @@
+{
+  "properties": [
+    {
+      "name": "security.oauth2.jwt.signKey",
+      "type": "java.lang.String",
+      "description": "Description for security.oauth2.jwt.signKey."
+    }
+  ]
+}

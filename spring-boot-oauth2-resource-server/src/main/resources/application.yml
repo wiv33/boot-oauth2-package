@@ -1,14 +1,17 @@
 server:
-  port: 8081
+  port: 8080
 
-##
 #
+# datasource
 spring:
   datasource:
     url: jdbc:postgresql://localhost:5432/postgres
     driver-class-name: org.postgresql.Driver
     username: ps
     password: secret
+
+  #
+  # JPA
   jpa:
     database-platform: org.hibernate.dialect.PostgreSQLDialect
     show-sql: true
@@ -19,14 +22,11 @@ spring:
           use_jdbc_metadata_defaults: false
     hibernate:
       ddl-auto: update
-##
-#
-  output:
-    ansi:
-      enabled: always
-##
-#
-logging:
-  level:
-    org.hibernate.SQL: DEBUG
-    org.hibernate.type: trace
+
+security:
+  oauth2:
+    client:
+      client-id: testClientId
+      client-secret: testSecret
+    resource:
+      token-info-uri: http://localhost:8081/oauth/check_token
