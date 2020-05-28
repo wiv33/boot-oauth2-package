@@ -13,7 +13,7 @@ public class OAuth2ResourceServerConfig extends ResourceServerConfigurerAdapter 
   public void configure(HttpSecurity http) throws Exception {
     http.headers().frameOptions().disable();
     http.authorizeRequests()
-    .antMatchers("/v1/users").access("#oauth2.hasScope('read')")
-    .anyRequest().authenticated();
+            .antMatchers("/v1/users").access("#oauth2.hasScope('read')")
+            .anyRequest().authenticated();
   }
 }

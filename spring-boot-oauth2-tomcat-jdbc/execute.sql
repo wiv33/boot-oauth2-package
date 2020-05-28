@@ -4,7 +4,8 @@ values('testClientId',null,'{bcrypt}$2a$10$/yWYK7RIVDv4VX61qzeN1utjA3gM8RjvbzZ3J
 SELECT * FROM oauth_client_details
 
 UPDATE oauth_client_details
-SET client_id = 'psk@gamil.com'
+SET web_server_redirect_uri = 'https://www.getpostman.com/oauth2/callback'
+WHERE client_id = 'testClientId'
 
 DELETE FROM my_user
 WHERE uid = 'psk@gmail.com'

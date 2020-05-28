@@ -9,10 +9,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 
 /**
@@ -62,6 +59,10 @@ public class OAuthTokenController {
 
     @GetMapping("/token")
     public OAuthToken callback(@RequestParam String code) {
+        return getOAuthToken(code);
+    }
+
+    private OAuthToken getOAuthToken(@RequestParam String code) {
         HttpEntity<?> httpEntity = makeHttpEntity(code);
         ResponseEntity<String> response = restTemplate.postForEntity(url, httpEntity, String.class);
         if (response.getStatusCode().is2xxSuccessful()) {
@@ -69,6 +70,11 @@ public class OAuthTokenController {
             return gson.fromJson(response.getBody(), oAuthToken.getClass());
         }
         return null;
+    }
+
+    @PostMapping("/callback")
+    public OAuthToken callbackPost(@RequestParam String code) {
+        return getOAuthToken(code);
     }
 
     private HttpEntity<?> makeHttpEntity(String code) {
@@ -81,7 +87,7 @@ public class OAuthTokenController {
         MultiValueMap<String, String> params = new LinkedMultiValueMap<>();
         params.add("code", code);
         params.add("grant_type", "authorization_code");
-        params.add("redirect_uri", "http://localhost:8090/oauth2/token");
+        params.add("redirect_uri", "https://www.getpostman.com/oauth2/callback");
 
         return new HttpEntity<>(params, headers);
     }
