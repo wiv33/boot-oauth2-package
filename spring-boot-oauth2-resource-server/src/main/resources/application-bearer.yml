@@ -1,0 +1,13 @@
+spring:
+  profiles:
+    active: bearer
+
+##
+# bearer 설정
+security:
+  oauth2:
+    client:
+      client-id: testClientId
+      client-secret: testSecret
+    resource:
+      token-info-uri: http://localhost:8081/oauth/check_token

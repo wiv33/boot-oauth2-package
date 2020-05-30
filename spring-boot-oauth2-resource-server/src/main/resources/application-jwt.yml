@@ -1,0 +1,11 @@
+#
+# active
+spring:
+  profiles:
+    active: jwt
+
+security:
+  oauth2:
+    jwt:
+      signKey: 337@#*
+

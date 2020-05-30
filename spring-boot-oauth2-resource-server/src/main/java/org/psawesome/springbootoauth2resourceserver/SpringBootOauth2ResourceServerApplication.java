@@ -7,6 +7,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class SpringBootOauth2ResourceServerApplication {
 
     public static void main(String[] args) {
+//        System.setProperty("spring.profiles.active", "bearer");
+        System.setProperty("spring.profiles.active", "jwt");
+
         SpringApplication.run(SpringBootOauth2ResourceServerApplication.class, args);
     }
 
