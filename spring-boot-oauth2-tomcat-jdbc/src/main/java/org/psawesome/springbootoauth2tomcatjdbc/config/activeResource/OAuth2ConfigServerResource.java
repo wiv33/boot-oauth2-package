@@ -14,6 +14,17 @@ import org.springframework.security.oauth2.provider.token.store.JdbcTokenStore;
 
 import javax.sql.DataSource;
 
+/**
+ * id/password 기반 Oauth2 인증을 담당하는 서버
+ * 다음 endpont가 자동 생성 된다.
+ * @see org.springframework.security.oauth2.provider.endpoint.AuthorizationEndpoint
+ * /oauth/authorize
+ * /oauth/token
+ *
+ * @see org.springframework.security.oauth2.provider.endpoint.TokenKeyEndpoint
+ *
+ */
+
 @Profile("resource")
 @EnableAuthorizationServer
 @Configuration

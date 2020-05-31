@@ -13,7 +13,8 @@ public class SpringBootOauth2TomcatJdbcApplication {
     public static void main(String[] args) {
 //        System.setProperty("spring.profiles.active", "jwt");
 //        System.setProperty("spring.profiles.active", "resource");
-        System.setProperty("spring.profiles.active", "resource-jwt");
+//        System.setProperty("spring.profiles.active", "resource-jwt");
+        System.setProperty("spring.profiles.active", "resource-publicKey");
         SpringApplication.run(SpringBootOauth2TomcatJdbcApplication.class, args);
     }
 }
