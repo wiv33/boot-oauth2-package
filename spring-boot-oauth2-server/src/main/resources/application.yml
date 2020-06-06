@@ -11,8 +11,10 @@ spring:
       database: webflux_security_demo
       host: localhost
       port: 27017
+  thymeleaf:
+    enabled: true
+    suffix: .html
 #      uri: mongodb://mongo:27017/webflux_security_demo
-
 ---
 spring:
   profiles: prod
